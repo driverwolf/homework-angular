@@ -1,0 +1,23 @@
+<div class="wrapper">
+  <form name="f">
+    <input type="text" [(ngModel)]="forFind" name="some" />
+    <button (click)="finding()">Find</button>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Checkbox</td>
+        <td>Status</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items; let i = index">
+        <td>{{ item.title }}</td>
+        <td><input type="checkbox" (change)="changeStatus(item)" /></td>
+        <td>{{ item.status }}</td>
+        <td><button (click)="remove(i)">X</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
