@@ -1,0 +1,29 @@
+mat-form-field {
+  display: block;
+  width: fit-content;
+  margin: auto auto 50px auto;
+}
+.material-icons {
+  cursor: pointer;
+}
+.wrapper-films {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 70%;
+  margin: auto;
+}
+.maker {
+  width: 28%;
+}
+.example-card {
+  width: 100%;
+  background-color: rgb(229, 222, 236);
+  margin-bottom: 20px;
+}
+mat-card-content {
+  text-align: center;
+}
+li {
+  list-style-type: none;
+}

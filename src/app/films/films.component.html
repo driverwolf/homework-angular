@@ -1,0 +1,40 @@
+<mat-form-field appearance="legacy">
+  <mat-label>Here must be title film</mat-label>
+  <input
+    matInput
+    [(ngModel)]="title"
+    placeholder="Guardians of the Galaxy Vol. 2"
+  />
+  <mat-icon matSuffix class="material-icons" (click)="search()"
+    >search</mat-icon
+  >
+  <mat-hint>Search</mat-hint>
+</mat-form-field>
+<div class="wrapper-films">
+  <div *ngFor="let film of films" class="maker">
+    <mat-card class="example-card" *ngIf="film.Response == 'True'">
+      <mat-card-header>
+        <mat-card-title>{{ film.Title }}</mat-card-title>
+        <mat-card-subtitle
+          >{{ film.Year }} {{ film.Country }}
+          <span [appColor]="film.imdbRating">{{
+            film.imdbRating
+          }}</span></mat-card-subtitle
+        >
+      </mat-card-header>
+      <img mat-card-image [src]="film.Poster" alt="Poster for film" />
+      <mat-card-content>
+        {{ film.Runtime | myTime }}
+        <br /><br />
+        <ul *ngIf="film.Actors">
+          <strong>Actors:</strong>
+          <li *ngFor="let actor of film.Actors.split(',')">
+            {{ actor }}
+          </li>
+        </ul>
+      </mat-card-content>
+      <mat-card-actions> </mat-card-actions>
+    </mat-card>
+    <span *ngIf="film.Response == 'False'">Not found. Response is false.</span>
+  </div>
+</div>

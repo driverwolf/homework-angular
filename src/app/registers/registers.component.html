@@ -1,0 +1,90 @@
+<div class="wrapper">
+  <div class="box1">
+    <mat-form-field appearance="fill">
+      <mat-label>Login</mat-label>
+      <input matInput placeholder="Enter login" [(ngModel)]="login" />
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input
+        type="password"
+        matInput
+        placeholder="Enter password"
+        [(ngModel)]="password"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="fill">
+      <mat-label>Email address</mat-label>
+      <input
+        type="email"
+        matInput
+        placeholder="Enter email"
+        [(ngModel)]="email"
+      />
+    </mat-form-field>
+    <br />
+    <button
+      mat-stroked-button
+      color="primary"
+      (click)="add()"
+      [style.display]="shower ? 'block' : 'none'"
+    >
+      Add user
+    </button>
+    <button
+      mat-stroked-button
+      color="primary"
+      (click)="editor()"
+      [style.display]="shower ? 'none' : 'block'"
+    >
+      Edit user
+    </button>
+  </div>
+
+  <div class="box2">
+    <table mat-table [dataSource]="registersArray" class="mat-elevation-z8">
+      <ng-container matColumnDef="Id">
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let register">
+          {{ registersArray.indexOf(register) + 1 }}
+        </td>
+      </ng-container>
+
+      <ng-container [matColumnDef]="column" *ngFor="let column of dataColumns">
+        <th mat-header-cell *matHeaderCellDef>{{ column | titlecase }}</th>
+        <td mat-cell *matCellDef="let register">{{ register[column] }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Edit">
+        <th mat-header-cell *matHeaderCellDef>Edit</th>
+        <td mat-cell *matCellDef="let register">
+          <button
+            mat-flat-button
+            color="primary"
+            (click)="edit(registersArray.indexOf(register))"
+          >
+            Edit
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Delete">
+        <th mat-header-cell *matHeaderCellDef>Delete</th>
+        <td mat-cell *matCellDef="let register">
+          <button
+            mat-flat-button
+            color="warn"
+            (click)="delete(registersArray.indexOf(register))"
+          >
+            Delete
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>
